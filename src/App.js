@@ -3,6 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import './App.css';
 import Note from './Note.js';
 import {useState} from 'react';
+
 function App() {
 
   const [change,setChange]=useState({
@@ -21,7 +22,7 @@ function App() {
 
   const submit=(e)=>{
     setNotes([...notes,change])
-    console.log(notes)
+    //console.log(notes)
     e.preventDefault();
     setChange({
       title:'',
