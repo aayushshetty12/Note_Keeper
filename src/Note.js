@@ -6,7 +6,10 @@ function Note(props){
     <div className='output'>
       <h1>{props.title}</h1>
       <p>{props.content}</p>
-      <button onClick={()=>{props.deleteNote(props.index)}}><DeleteIcon fontSize="large"/></button>
+      <div className='lower'>
+        <p>{props.date}</p>
+        <button onClick={()=>{props.deleteNote(props.index)}}><DeleteIcon fontSize="large"/></button>
+      </div>
     </div>
   );
 }

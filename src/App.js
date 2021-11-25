@@ -1,6 +1,6 @@
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
-import AddIcon from '@mui/icons-material/Add';
 import './App.css';
+import CreateNote from './createNote.js'
 import Note from './Note.js';
 import {useState} from 'react';
 
@@ -8,27 +8,38 @@ function App() {
 
   const [change,setChange]=useState({
     title:'',
-    content:''
+    content:'',
+    date:''
   });
-
   const [notes,setNotes]=useState([])
   const [show,setShow]=useState(false);
 
   const input=e=>{
     let name=e.target.id;
+    console.log(typeof(name));
     setChange({...change,[name]:e.target.value});
-    //console.log(change);
+    console.log(change);
   }
 
   const submit=(e)=>{
+    let d= new Date();
+    d = d.toLocaleString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+    change.date=d;
     setNotes([...notes,change])
     //console.log(notes)
     e.preventDefault();
     setChange({
       title:'',
-      content:''
+      content:'',
+      date:''
     });
-
+    setShow(false);
   }
 
   const deleteNote=(x)=>{
@@ -41,20 +52,25 @@ function App() {
         <h1><NoteAddIcon/>Note Keeper</h1>
       </header>
       <div className='input'>
-        <form>
-          {show && <input placeholder='Title' id='title' value={change.title} onChange={input}/>}
-          <textarea placeholder={!show?'Add a note...':'Description'} rows={show?'3':'1'} id='content' value={change.content} onChange={input} onClick={()=>setShow(true)}/>
-          {show && <button onClick={submit}><AddIcon/></button> }
-        </form>
+        <CreateNote
+          show={show}
+          change={change}
+          input={input}
+          submit={submit}
+          set={()=>setShow(true)}
+        />
       </div>
-
-      {notes.map((note,x)=><Note
-      title={note.title}
-      content={note.content}
-      index={x}
-      deleteNote={deleteNote}/>)
-    }
-
+      <div className='main'>
+        {notes.slice(0).reverse().map((note,x)=>
+          <Note
+          title={note.title}
+          content={note.content}
+          index={x}
+          deleteNote={deleteNote}
+          date={note.date}
+          />
+        )}
+      </div>
     </div>
   );
 }
