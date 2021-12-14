@@ -1,30 +1,31 @@
-header{
+header {
   background-color: #45e2ff;
-  padding:1.5rem;
+  padding: 1.5rem;
   color: #fff;
 }
 
-form{
-  width:430px;
+form {
+  width: 430px;
   position: relative;
-  padding: 0.6rem ;
-  margin: 30px auto ;
+  padding: 0.6rem;
+  margin: 30px auto;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0 1px 10px rgb(138, 137, 137);
   font-weight: 100px;
 }
 
-form input, form textarea{
-  width:100%;
+form input,
+form textarea {
+  width: 100%;
   border: none;
   resize: none;
   font-size: 1.5rem;
-  padding:5px;
+  padding: 5px;
   outline: none;
 }
 
-form button{
+form button {
   position: absolute;
   border: none;
   color: none;
@@ -37,38 +38,42 @@ form button{
   cursor: pointer;
   text-align: center;
   top: 8.6rem;
-  left:27rem;
+  left: 27rem;
   box-shadow: 0 1px 10px rgb(138, 137, 137);
 }
 
-.main{
-  margin:1rem;
+.main {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.output{
+.output {
   background-color: #fff;
-  width:260px;
+  width: 260px;
   margin: 1.4rem;
   padding: 13px;
   border-radius: 8px;
-  display: inline-block;
   box-shadow: 0 1px 10px rgb(138, 137, 137);
-  float:left;
+  position: relative;
 }
 
-.output h1{
+.output h1 {
   font-size: 1.5rem;
   font-weight: 500;
   word-wrap: break-word;
 }
 
-.output p{
+.output p {
   word-wrap: break-word;
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
-
-.lower button{
+.lower {
+  position: relative;
+  bottom: 0;
+}
+.lower button {
   position: relative;
   border: none;
   outline: none;
@@ -76,15 +81,30 @@ form button{
   background-color: #fff;
   cursor: pointer;
   height: 10px;
-  width:10px;
-  top:0;
-  right:1rem;
+  width: 10px;
+  top: 0;
+  right: 1rem;
   float: right;
 }
 
-.lower p{
+.lower p {
   display: inline-block;
   font-size: 14px;
   width: 60%;
   height: 100%;
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    text-align: center;
+  }
+  form {
+    width: 310px;
+  }
+  form button {
+    left: 19rem;
+  }
+  .main {
+    grid-template-columns: auto;
+  }
 }
